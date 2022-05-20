@@ -12,7 +12,7 @@ const Container = styled.div`
 `
 
 const Announcement = () => {
-  return <div>Super Oferta de Smartphone!</div>
+  return <Container>Super Oferta de Smartphone!</Container>
 }
 
 export default Announcement

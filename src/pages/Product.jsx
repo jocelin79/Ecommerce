@@ -6,6 +6,8 @@ import Newsletter from "../components/Newsletter"
 import Footer from "../components/Footer"
 import { Add, Remove } from '@material-ui/icons'
 import {mobile} from "../reponsive"
+import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Container = styled.div`
 
@@ -121,6 +123,21 @@ const Button = styled.button`
 `
 
 const Product = () => {
+  const location = useLocation()
+  const id = location.pathname.split("/")[2]
+
+  const [product, setProduct] = useState({})
+
+  useEffect(()=>{
+    const getProduct = async () => {
+      try{
+        const res = axios.
+      }catch(err){
+
+      }
+    }
+  }, [id])
+
   return (
     <Container>
       <Navbar/>

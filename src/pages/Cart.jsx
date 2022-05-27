@@ -5,10 +5,14 @@ import Footer from "../components/Footer"
 import { Add, Remove } from '@material-ui/icons'
 import {mobile} from "../reponsive"
 import { useSelector } from 'react-redux'
+import StripeCheckout from 'react-stripe-checkout'
+import { useState, useEffect } from 'react'
+import {userRequest} from '../requestMethods'
+import { useHistory } from 'react-router-dom'
 
-const Container = styled.div`
-  
-`
+const KEY = process.env.REACT_APP_STRIPE
+
+const Container = styled.div``
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -143,13 +147,9 @@ const SummaryItem = styled.div`
   font-size: ${props=>props.type === "total" && "24px"};
 `
 
-const SummaryItemText = styled.span`
-  
-`
+const SummaryItemText = styled.span``
 
-const SummaryItemPrice = styled.span`
-  
-`
+const SummaryItemPrice = styled.span``
 
 const SummaryButton = styled.button`
   width: 100%;
@@ -161,6 +161,30 @@ const SummaryButton = styled.button`
 
 const Cart = () => {
   const cart = useSelector(state => state.cart)
+  const [stripeToken, setStripeToken] = useState(null)
+  const history = useHistory()
+
+  const onToken = (token)=>{
+    setStripeToken(token)
+  }
+
+  useEffect(()=> {
+    const makeRequest = async () => {
+      try{
+        const res = await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: cart.total * 100,
+        })
+        history.push("/success", {data:res.data})
+      }catch(err){
+        console.log(err)
+      }
+    }
+    stripeToken && cart.total>=1 && makeRequest()
+  }, [stripeToken, cart.total, history])
+
+  console.log(stripeToken)
+
   return (
     <Container>
       <Navbar/>
@@ -221,7 +245,18 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <SummaryButton>CHECKOUT NOW</SummaryButton>
+            <StripeCheckout 
+            name="Carrefour Shop"
+            image="https://avatars.githubusercontent.com/u/1486366?v=4"
+            billingAddress
+            shippingAddress
+            description={`Total da compra foi $${cart.total}`}
+            amount={cart.total * 100}
+            token={onToken}
+            stripeKey={KEY}
+            >
+              <SummaryButton>CHECKOUT NOW</SummaryButton>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>

@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 import {userRequest} from '../requestMethods'
 import { useHistory } from 'react-router-dom'
 
-const KEY = process.env.REACT_APP_STRIPE
+const KEY = pk_test_51L3PhDHvbOhc8rYWrXWZ4mTwHmOIe2szyZHA58wMcQ2KIKNOHovmjWlmpVgrKSA0WHl5UiTd9UBX0NmdUHfCV5im00dcSNeL23
 
 const Container = styled.div``
 

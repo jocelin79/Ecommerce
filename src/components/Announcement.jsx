@@ -1,8 +1,14 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-  height: 30px;
-  background-color: teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+const Wrapper = styled.div`
+  height: 35px;
+  width: ${props => props.width};
+  background-color: #1e5bc6;
   color: white;
   display: flex;
   align-items: center;
@@ -11,8 +17,14 @@ const Container = styled.div`
   font-weight: 500;
 `
 
-const Announcement = () => {
-  return <Container>Super Oferta de Smartphone!</Container>
+const Announcement = (props) => {
+  return (
+    <Container>
+      <Wrapper width={props.width}>
+        Super Oferta de {props.text}!
+      </Wrapper>
+    </Container>
+  )
 }
 
 export default Announcement

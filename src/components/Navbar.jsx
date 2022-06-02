@@ -18,16 +18,19 @@ const Wrapper = styled.div`
   align-items: center;
   ${mobile ({padding: "10px 0"})}
 `
+
 const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
 `
+
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
   ${mobile ({display: "none"})}
 `
+
 const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;
@@ -35,18 +38,22 @@ const SearchContainer = styled.div`
   margin-left: 25px;
   ${mobile ({marginLeft: "5px"})}
 `
+
 const Input = styled.input`
   border: none;
   ${mobile ({width: "50px"})}
 `
+
 const Center = styled.div`
   flex: 1;
   text-align: center;
 `
+
 const Logo = styled.h1`
   font-weight: bold;
   ${mobile ({fontSize: "24px", marginLeft: "5px"})}
 `
+
 const Right = styled.div`
   flex: 1;
   display: flex;

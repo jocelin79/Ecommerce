@@ -5,8 +5,9 @@ import Products from "../components/Products"
 import Newsletter from "../components/Newsletter"
 import Footer from "../components/Footer"
 import {mobile} from "../reponsive"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const Container = styled.div`
 
@@ -46,11 +47,25 @@ const Select = styled.select`
 const Option = styled.option``
 
 const ProductList = () => {
+  
   const location = useLocation()
-  const cat = location.pathname.split("/")[2]
+  const cep = location.pathname.split("/")[2]
   const [filters, setFilters] = useState({})
   const [sort, setSort] = useState("newest")
+  const [sellers, setSellers] = useState("")
+  const baseUrl = "http://localhost:5000/api/sellers/"
+  const url = baseUrl + cep
 
+  
+  axios(url)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  
+  
   const handleFilters = (e) => {
     const value = e.target.value
     setFilters({
@@ -62,8 +77,8 @@ const ProductList = () => {
   return (
     <Container>
       <Navbar/>
-      <Announcement/>
-      <Title>{cat}</Title>
+      <Announcement width="100%" text="Fraudas para seu filho"/>
+      <Title>{cep}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Produtcs</FilterText>
@@ -98,7 +113,7 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products cat={cat} filters={filters} sort={sort}/>
+      {/* <Products cep={cep} filters={filters} sort={sort}/> */}
       <Newsletter/>
       <Footer/>
     </Container>

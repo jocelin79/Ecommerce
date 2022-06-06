@@ -52,48 +52,61 @@ const ProductList = () => {
   const cep = location.pathname.split("/")[2]
   const [filters, setFilters] = useState({})
   const [sort, setSort] = useState("newest")
-  const [sellers, setSellers] = useState("")
+  const [sellersId, setSellersId] = useState([])
+  const [seller, setSeller] = useState("")
   const baseUrl = "http://localhost:5000/api/sellers/"
-  const url = baseUrl + cep
 
   
-  axios(url)
-  .then(function (response) {
-    console.log(JSON.stringify(response.data));
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+  const url = baseUrl + cep
+
+  useEffect(() => {
+    const getSellersId = async () => {
+      axios(url)
+      .then(function (response) {
+        const arr = (JSON.stringify(response.data)).split(",")
+        const newArr = arr.map((item) => item.includes('name') ? item.substring(8, item.length -1) : "noId")
+        const sellersArr = newArr.filter((element) => element.includes('noId') === false)
+        setSellersId(sellersArr)
+        setSeller(sellersId[0])
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+    getSellersId()
+  }, [])
   
-  
-  const handleFilters = (e) => {
+
+  const handleSeller = (e) => {
     const value = e.target.value
-    setFilters({
-      ...filters,
-      [e.target.name]: value
-    })
+    setSeller(value)
   }
+
+
+  // const handleFilters = (e) => {
+  //   const value = e.target.value
+  //   setFilters({
+  //     ...filters,
+  //     [e.target.name]: value
+  //   })
+  // }
 
   return (
     <Container>
       <Navbar/>
       <Announcement width="100%" text="Fraudas para seu filho"/>
-      <Title>{cep}</Title>
+      <Title>{seller}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Produtcs</FilterText>
-          <Select name="color" onChange={handleFilters}>
+          <Select name="color" onChange={handleSeller}>
             <Option disable>
-              Color
+              Carrefours da sua região
             </Option>
-            <Option>white</Option>
-            <Option>black</Option>
-            <Option>red</Option>
-            <Option>blue</Option>
-            <Option>yellow</Option>
-            <Option>green</Option>
+            {sellersId.map((item, i) => <Option key={item}>{item} - Bairro {i}</Option>)}
           </Select>
-          <Select name="size" onChange={handleFilters}>
+          <Select name="size">
+          {/* <Select name="size" onChange={handleFilters}> */}
             <Option disable>
               Size
             </Option>
@@ -113,7 +126,8 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      {/* <Products cep={cep} filters={filters} sort={sort}/> */}
+      <Products seller={seller}/>
+      {/* <Products cat={cat} filters={filters} sort={sort}/> */}
       <Newsletter/>
       <Footer/>
     </Container>

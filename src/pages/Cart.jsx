@@ -4,9 +4,7 @@ import Announcement from "../components/Announcement"
 import Footer from "../components/Footer"
 import {mobile} from "../reponsive"
 import { useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
-import {userRequest} from '../requestMethods'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { removeProduct } from '../redux/cartRedux'
 
@@ -158,22 +156,7 @@ const SummaryButton = styled.button`
 
 const Cart = () => {
   const cart = useSelector(state => state.cart)
-  const history = useHistory()
   const dispatch = useDispatch()
-
-  useEffect(()=> {
-    const makeRequest = async () => {
-      try{
-        const res = await userRequest.post("/checkout/payment", {
-          amount: cart.total * 100,
-        })
-        history.push("/success", {data:res.data})
-      }catch(err){
-        console.log(err)
-      }
-    }
-    cart.total>=1 && makeRequest()
-  }, [cart.total, history])
 
   const handleClick = (e) => {
     //update cart
@@ -184,8 +167,6 @@ const Cart = () => {
       removeProduct()
     )
   }
-
-  console.log(cart.quantity)
 
   return (
     <Container>
@@ -218,9 +199,7 @@ const Cart = () => {
                     </ProductDetail>
                     <PriceDetail>
                     <ProductAmountContainer>
-                      {/* <Add/> */}
                       <ProductAmount>{product.quantity} un</ProductAmount>
-                      {/* <Remove/> */}
                     </ProductAmountContainer>
                     <ProductPrice>$ {product.items[0].sellers[0].commertialOffer.Installments[0].Value * product.quantity}</ProductPrice>
                   </PriceDetail>

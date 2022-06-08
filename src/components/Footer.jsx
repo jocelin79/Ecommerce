@@ -1,4 +1,4 @@
-import { Facebook, Instagram, MailOutline, Phone, Room, Twitter } from '@material-ui/icons'
+import { Facebook, Instagram, MailOutline, Phone, Twitter } from '@material-ui/icons'
 import styled from 'styled-components'
 import {mobile} from "../reponsive"
 
@@ -14,9 +14,7 @@ const Left = styled.div`
   padding: 20px;
 `
 
-const Logo = styled.h1`
-
-`
+const Logo = styled.h1``
 
 const Desc = styled.p`
   margin: 20px 0px;
@@ -72,9 +70,7 @@ const ContactItem = styled.div`
   align-items: center;
 `
 
-const Payment = styled.img`
-  
-`
+const Payment = styled.img``
 
 const Footer = () => {
   return (

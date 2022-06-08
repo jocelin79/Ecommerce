@@ -16,10 +16,6 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `
-const Hr = styled.hr`
-  border: none;
-  height: 4px;
-`
 
 const Left = styled.div`
   flex: 1;

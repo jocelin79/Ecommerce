@@ -95,7 +95,6 @@ const ProductList = () => {
             {sellersId.map((item, i) => <Option key={item}>{item}</Option>)}
           </Select>
           <Select name="size">
-          {/* <Select name="size" onChange={handleFilters}> */}
             <Option disable>
               Categoria
             </Option>

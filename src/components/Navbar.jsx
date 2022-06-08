@@ -1,10 +1,12 @@
 import { Badge } from '@material-ui/core';
 import { Search, ShoppingCartOutlined } from '@material-ui/icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import {mobile} from "../reponsive"
+import {logOut} from "../redux/userRedux"
+import { useDispatch } from 'react-redux'
 
 
 const Container = styled.div`
@@ -76,7 +78,23 @@ const MenuItem = styled.a`
 `
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const [currentUser, setCurrentUser] = useState("")
   const quantity = useSelector(state=> state.cart.quantity)
+  const cliente = useSelector(state=> state.user.currentUser)
+
+  useEffect(() => {
+    setCurrentUser(cliente)
+  }, [])
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    dispatch(
+
+      logOut()
+    )
+    setCurrentUser(cliente)
+  }
 
   return (
     <Container>
@@ -110,9 +128,11 @@ const Navbar = () => {
           <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>
             <MenuItem>REGISTER</MenuItem>
           </Link>
-          <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+          {currentUser ? "" : <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
             <MenuItem>SIGN IN</MenuItem>
-          </Link>
+          </Link>}
+          {currentUser && <MenuItem>OLÁ, CLIENTE!</MenuItem>}
+          {currentUser && <MenuItem onClick={handleClick}>LOGOUT</MenuItem>}
         </Right>
       </Wrapper>
     </Container>

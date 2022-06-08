@@ -7,7 +7,6 @@ import { Add, Remove } from '@material-ui/icons'
 import {mobile} from "../reponsive"
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { publicRequest } from '../requestMethods'
 import { useDispatch } from 'react-redux'
 import { addProduct } from '../redux/cartRedux'
 import axios from 'axios'
@@ -45,10 +44,6 @@ const InfoContainer = styled.div`
 const Title = styled.h1`
   font-weight: 200;
   margin-bottom: 20px;
-`
-
-const Desc = styled.p`
-  margin: 20px 0;
 `
 
 const Price = styled.span`
@@ -110,9 +105,6 @@ const Product = () => {
   const [price, setPrice] = useState("")
   const [productName, setProductName] = useState("")
   const dispatch = useDispatch("")
-
-  // const res = await publicRequest.get("/products/find/" + id);
-  //   setProduct(res.data);
 
   const url = "http://localhost:5000/api/sellers/seller/" + seller
 

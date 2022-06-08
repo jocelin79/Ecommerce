@@ -4,7 +4,7 @@ import {mobile} from "../reponsive"
 
 const Container = styled.div`
   flex: 1;
-  margin: 3px;
+  margin: 9px;
   height: 70vh;
   position: relative;
 `
@@ -30,15 +30,17 @@ const Info = styled.div`
 
 const Title = styled.h1`
   color: white;
+  background-color: #E81e26;
   margin-bottom: 20px;
   text-align: center;
+  padding: 5px;
 `
 
 const Button = styled.button`
   border: none;
   padding: 10px;
-  background-color: white;
-  color: gray;
+  background-color: #1e5bc6;
+  color: white;
   cursor: pointer;
   font-weight: 600;
 `
@@ -50,7 +52,7 @@ const CategoryItem = ({item}) => {
         <Image src={item.img}/>
         <Info>
           <Title>{item.title}</Title>
-          <Button>SHOP NOW</Button>
+          <Button>VER OFERTAS</Button>
         </Info>
       {/* </Link> */}
     </Container>

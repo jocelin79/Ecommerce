@@ -50,8 +50,6 @@ const ProductList = () => {
   
   const location = useLocation()
   const cep = location.pathname.split("/")[2]
-  const [filters, setFilters] = useState({})
-  const [sort, setSort] = useState("newest")
   const [sellersId, setSellersId] = useState([])
   const [seller, setSeller] = useState("")
   const baseUrl = "http://localhost:5000/api/sellers/"
@@ -67,7 +65,7 @@ const ProductList = () => {
         const newArr = arr.map((item) => item.includes('name') ? item.substring(8, item.length -1) : "noId")
         const sellersArr = newArr.filter((element) => element.includes('noId') === false)
         setSellersId(sellersArr)
-        setSeller(sellersId[0])
+        setSeller(sellersArr[0])
       })
       .catch(function (error) {
         console.log(error);
@@ -82,15 +80,6 @@ const ProductList = () => {
     setSeller(value)
   }
 
-
-  // const handleFilters = (e) => {
-  //   const value = e.target.value
-  //   setFilters({
-  //     ...filters,
-  //     [e.target.name]: value
-  //   })
-  // }
-
   return (
     <Container>
       <Navbar/>
@@ -98,36 +87,35 @@ const ProductList = () => {
       <Title>{seller}</Title>
       <FilterContainer>
         <Filter>
-          <FilterText>Filter Produtcs</FilterText>
+          <FilterText>Filtrar Produtos</FilterText>
           <Select name="color" onChange={handleSeller}>
             <Option disable>
               Carrefours da sua região
             </Option>
-            {sellersId.map((item, i) => <Option key={item}>{item} - Bairro {i}</Option>)}
+            {sellersId.map((item, i) => <Option key={item}>{item}</Option>)}
           </Select>
           <Select name="size">
           {/* <Select name="size" onChange={handleFilters}> */}
             <Option disable>
-              Size
+              Categoria
             </Option>
-            <Option>XS</Option>
-            <Option>S</Option>
-            <Option>M</Option>
+            <Option>Fruta</Option>
+            <Option>Laticínio</Option>
+            <Option>Café da Manhã</Option>
           </Select>
         </Filter>
         <Filter>
-          <FilterText>Sort Produtcs</FilterText>
-          <Select onChange={(e) => setSort(e.target.value)}>
+          <FilterText>Ordenar Produtos</FilterText>
+          <Select>
             <Option value="newest">
-              Newest
+              Novos
             </Option>
-            <Option value="asc">Price (asc)</Option>
-            <Option value="decs">Price (desc)</Option>
+            <Option value="asc">Preço (asc)</Option>
+            <Option value="decs">Preço (desc)</Option>
           </Select>
         </Filter>
       </FilterContainer>
       <Products seller={seller}/>
-      {/* <Products cat={cat} filters={filters} sort={sort}/> */}
       <Newsletter/>
       <Footer/>
     </Container>

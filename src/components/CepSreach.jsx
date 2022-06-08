@@ -7,6 +7,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0px 60px 10px 60px;
   background-color: #E81e26;
 `
 
@@ -14,6 +15,10 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`
+const Hr = styled.hr`
+  border: none;
+  height: 4px;
 `
 
 const Left = styled.div`
@@ -25,7 +30,7 @@ const Left = styled.div`
 
 const Text = styled.span`
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   color: white;
   text-align: right;
   margin: 20px;
@@ -49,7 +54,7 @@ const Input = styled.input`
 const Button = styled.button`
   height: 40px;
   border: none;
-  background-color: teal;
+  background-color: #1e5bc6;
   color: white;
   cursor: pointer;
 `

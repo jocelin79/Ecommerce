@@ -6,7 +6,8 @@ import {mobile} from "../reponsive"
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 60vh;
+  margin-top: 10px;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -41,7 +42,7 @@ const Wrapper = styled.div`
 
 const Slide = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 60vh;
   display: flex;
   align-items: center;
   background-color: ${props => props.bg};
@@ -53,12 +54,13 @@ const ImgContainer = styled.div`
 `
 
 const Image = styled.img`
-  height: 80%;
+  height: 100%;
+  width: 80%;
 `
 
 const InfoContainer = styled.div`
   flex: 1;
-  padding: 50px;
+  padding: 0 30px;
 `
 
 const Title = styled.h1`
@@ -75,7 +77,8 @@ const Desc = styled.p`
 const Button = styled.button`
   padding: 10px;
   font-size: 20px;
-  background-color: transparent;
+  background-color: #E81e26;
+  color: white;
   cursor: pointer;
 `
 
@@ -105,7 +108,7 @@ const Slider = () => {
           <InfoContainer>
             <Title>{item.title}</Title>
             <Desc>{item.desc}</Desc>
-            <Button>SHOP NOW</Button>
+            <Button>VER OFERTAS</Button>
           </InfoContainer>
         </Slide>
         ))}

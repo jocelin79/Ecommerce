@@ -47,12 +47,18 @@ const Input = styled.input`
 const Center = styled.div`
   flex: 1;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 `
 
 const Logo = styled.h1`
   font-weight: bold;
   ${mobile ({fontSize: "24px", marginLeft: "5px"})}
 `
+
+const LogoImg = styled.img``
 
 const Right = styled.div`
   flex: 1;
@@ -62,7 +68,7 @@ const Right = styled.div`
   ${mobile ({flex: "2",justifyContent: "center"})}
 `
 
-const MenuItem = styled.div`
+const MenuItem = styled.a`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
@@ -78,18 +84,21 @@ const Navbar = () => {
         <Left>
           <Language>EN</Language>
           <SearchContainer>
-            <Input placeholder="Search"/>
+            <Input placeholder="Buscar"/>
             <Search style={{color:"gray", fontSize:16}}/>
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>
-            Carrefour.
-          </Logo>
+          <Link to="/">
+            <LogoImg src="https://i.ibb.co/FgKyZqk/carrefour-1.png"/>
+          </Link>
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Logo>
+              Carrefour.
+            </Logo>
+          </Link>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
           <Link to="/cart">
             <MenuItem>
               <Badge
@@ -97,6 +106,12 @@ const Navbar = () => {
                 <ShoppingCartOutlined/>
               </Badge>
             </MenuItem>
+          </Link>
+          <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <MenuItem>REGISTER</MenuItem>
+          </Link>
+          <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <MenuItem>SIGN IN</MenuItem>
           </Link>
         </Right>
       </Wrapper>

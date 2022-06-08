@@ -4,11 +4,11 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #1e5bc6
 `
 const Wrapper = styled.div`
   height: 35px;
   width: ${props => props.width};
-  background-color: #1e5bc6;
   color: white;
   display: flex;
   align-items: center;

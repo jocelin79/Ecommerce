@@ -17,7 +17,6 @@ const Home = () => {
       <Announcement width="100%" text="Pneus com Frete Grátis"/>
       <Slider/>
       <Categories/>
-      <Products/>
       <Newsletter/>
       <Footer/>
     </div>

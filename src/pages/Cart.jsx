@@ -2,15 +2,13 @@ import styled from 'styled-components'
 import Navbar from "../components/Navbar"
 import Announcement from "../components/Announcement"
 import Footer from "../components/Footer"
-import { Add, Remove } from '@material-ui/icons'
 import {mobile} from "../reponsive"
 import { useSelector } from 'react-redux'
-import StripeCheckout from 'react-stripe-checkout'
 import { useState, useEffect } from 'react'
 import {userRequest} from '../requestMethods'
-import { useHistory } from 'react-router-dom'
-
-const KEY = 'pk_test_51L3PhDHvbOhc8rYWrXWZ4mTwHmOIe2szyZHA58wMcQ2KIKNOHovmjWlmpVgrKSA0WHl5UiTd9UBX0NmdUHfCV5im00dcSNeL23'
+import { Link, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { removeProduct } from '../redux/cartRedux'
 
 const Container = styled.div``
 
@@ -38,6 +36,11 @@ const TopButton = styled.button`
   border: ${props=>props.type === "filled" && "none"};
   background-color: ${props=>props.type === "filled" ? "black" : "transparent"};
   color: ${props=>props.type === "filled" && "white"};
+
+  &:active {
+  background-color: #7ab47b;
+  transform: translateY(2px);
+  }
 `
 
 const TopTexts = styled.div`
@@ -86,13 +89,6 @@ const ProductName = styled.span``
 
 const ProductId = styled.span``
 
-const ProductColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${props=>props.color};
-`
-
 const ProductSize = styled.span``
 
 const PriceDetail = styled.div`
@@ -124,7 +120,7 @@ const ProductPrice = styled.div`
 const Hr = styled.hr`
   background-color: #eee;
   border: none;
-  height: 1px;
+  height: 4px;
 `
 
 const Summary = styled.div`
@@ -153,6 +149,7 @@ const SummaryItemPrice = styled.span``
 
 const SummaryButton = styled.button`
   width: 100%;
+  font-weight: 600;
   padding: 10px;
   background-color: black;
   color: white;
@@ -161,18 +158,13 @@ const SummaryButton = styled.button`
 
 const Cart = () => {
   const cart = useSelector(state => state.cart)
-  const [stripeToken, setStripeToken] = useState(null)
   const history = useHistory()
-
-  const onToken = (token)=>{
-    setStripeToken(token)
-  }
+  const dispatch = useDispatch()
 
   useEffect(()=> {
     const makeRequest = async () => {
       try{
         const res = await userRequest.post("/checkout/payment", {
-          tokenId: stripeToken.id,
           amount: cart.total * 100,
         })
         history.push("/success", {data:res.data})
@@ -180,47 +172,57 @@ const Cart = () => {
         console.log(err)
       }
     }
-    stripeToken && cart.total>=1 && makeRequest()
-  }, [stripeToken, cart.total, history])
+    cart.total>=1 && makeRequest()
+  }, [cart.total, history])
 
-  console.log(stripeToken)
+  const handleClick = (e) => {
+    //update cart
+    e.preventDefault()
+    
+    dispatch(
+
+      removeProduct()
+    )
+  }
+
+  console.log(cart.quantity)
 
   return (
     <Container>
       <Navbar/>
-      <Announcement/>
+      <Announcement text="Material Escolar para seu Filho "/>
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>SEU CARRINHO</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <TopButton onClick={handleClick} >REMOVER DO CARRINHO</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag (2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
+            <TopText>Itens no Carrinho (2)</TopText>
+            <TopText>Lista de Desejos (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <Link to="/">
+            <TopButton type="filled">VOLTAR ÀS COMPRAS</TopButton>
+          </Link>
         </Top>
         <Bottom>
           <Info>
-            {cart.product.map(product=>(
+            {cart.products.map((product) =>(
               <>
                 <Product>
                   <ProductDetail>
-                    <Image src= {product.img}/>
+                    <Image src={product.items[0].images[0].imageUrl} alt={product.items[0].name}/>
                     <Details>
-                      <ProductName><b>Product:</b> {product.title}</ProductName>
-                      <ProductId><b>ID:</b> {product.id}</ProductId>
-                      <ProductColor color={product.color}/>
-                      <ProductSize><b>Size:</b> {product.size}</ProductSize>
+                      <ProductName><b>Produto:</b> {product.items[0].name}</ProductName>
+                      <ProductId><b>ID:</b> {product.productId}</ProductId>
+                      <ProductSize><b>Preço da unidade:</b> R$ {product.items[0].sellers[0].commertialOffer.Installments[0].Value}</ProductSize>
                     </Details>
-                  </ProductDetail>
-                    price
-                  <PriceDetail>
+                    </ProductDetail>
+                    <PriceDetail>
                     <ProductAmountContainer>
-                      <Add/>
-                      <ProductAmount>{product.quantity}</ProductAmount>
-                      <Remove/>
+                      {/* <Add/> */}
+                      <ProductAmount>{product.quantity} un</ProductAmount>
+                      {/* <Remove/> */}
                     </ProductAmountContainer>
-                    <ProductPrice>$ {product.price * product.quantity}</ProductPrice>
+                    <ProductPrice>$ {product.items[0].sellers[0].commertialOffer.Installments[0].Value * product.quantity}</ProductPrice>
                   </PriceDetail>
                 </Product>
                 <Hr/>
@@ -228,35 +230,24 @@ const Cart = () => {
               ))}
           </Info>
           <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+            <SummaryTitle>SEU PEDIDO</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>R$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemText>Custo de Entrega</SummaryItemText>
+              <SummaryItemPrice>R$ 5.90</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemText>Desconto</SummaryItemText>
+              <SummaryItemPrice>R$ -5.90</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>R$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <StripeCheckout 
-            name="Carrefour Shop"
-            image="https://avatars.githubusercontent.com/u/1486366?v=4"
-            billingAddress
-            shippingAddress
-            description={`Total da compra foi $${cart.total}`}
-            amount={cart.total * 100}
-            token={onToken}
-            stripeKey={KEY}
-            >
-              <SummaryButton>CHECKOUT NOW</SummaryButton>
-            </StripeCheckout>
+            <SummaryButton>FINALIZAR COMPRA</SummaryButton>
           </Summary>
         </Bottom>
       </Wrapper>

@@ -23,6 +23,7 @@ const Container = styled.div`
   min-width: 280px;
   height: 350px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #f5fbfd;
@@ -31,14 +32,6 @@ const Container = styled.div`
   &:hover ${Info} {
     opacity: 1;
   }
-`
-
-const Circle = styled.div`
-  width: 200px;
-  height: 200px;
-  border-radius:50%;
-  background-color: #fff;
-  position: absolute;
 `
 
 const Image = styled.img`
@@ -62,18 +55,18 @@ const Icon = styled.div`
   }
   cursor: pointer;
 `
+const Text = styled.span``
 
-const Product = ({item}) => {
+const Product = ({item, seller}) => {
   return (
     <Container>
-      <Circle/>
-      <Image src={item.img} />
+      <Image src={item.items[0].images[0].imageUrl} alt={item.items[0].name}/>
       <Info>
         <Icon>
           <ShoppingCartOutlined/>
         </Icon>
         <Icon>
-          <Link to={`/product/${item._id}`}>
+          <Link to={`/product/${seller}/${item.productId}`}>
             <SearchOutlined/>
           </Link>
         </Icon>
@@ -81,6 +74,8 @@ const Product = ({item}) => {
           <FavoriteBorderOutlined/>
         </Icon>
       </Info>
+      <Text>{item.items[0].name}</Text>
+      <Text><strong>R$ {item.items[0].sellers[0].commertialOffer.Installments[0].Value}</strong></Text>
     </Container>
   )
 }

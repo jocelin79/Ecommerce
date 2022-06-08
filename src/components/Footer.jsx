@@ -81,7 +81,7 @@ const Footer = () => {
     <Container>
       <Left>
         <Logo>Carrefour.</Logo>
-        <Desc>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem aspernatur sunt excepturi aliquid debitis sapiente similique magni molestias! Sequi maxime tempore doloribus ea minima blanditiis distinctio odio vel voluptatum voluptas?</Desc>
+        <Desc>Carrefour Comércio e Indústrias Ltda: Via de Acesso Norte, Km 38, nº 420, Empresarial Gato Preto, Cajamar - SP | CEP 07789-100 | CNPJ: 45.543.915/0846-95 || Envio de documentos administrativos e jurídicos: Rua George Eastman, nº 213 - Vila Tramontano, São Paulo, SP | CEP 05690-000</Desc>
         <SocialContainer>
           <SocialIcon color="385999">
             <Facebook/>
@@ -96,29 +96,28 @@ const Footer = () => {
       </Left>
       <Center>
 
-        <Title>Udeful Links</Title>
+        <Title>Atendimento</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishilist</ListItem>
-          <ListItem>Term</ListItem>
+          <ListItem>Minha conta</ListItem>
+          <ListItem>Meus pedidos</ListItem>
+          <ListItem>Encontre uma loja</ListItem>
+          <ListItem>Central de Atendimento</ListItem>
+          <ListItem>Cartão Carrefour</ListItem>
+          <ListItem>Perguntas Frequentes</ListItem>
+          <ListItem>Denunciar Produtos</ListItem>
+          <ListItem>Consumidor.gov</ListItem>
         </List>
       </Center>
       <Right>
-        <Title>Contact</Title>
+        <Title>Contatio</Title>
         <ContactItem>
-          <Room style={{marginRight: "10px"}}/>622 Dixie Path, Sout Tobbint 99635
+          <Phone style={{marginRight: "10px"}}/>Para regiões metropolitanas: 3004-2222
         </ContactItem>
         <ContactItem>
-          <Phone style={{marginRight: "10px"}}/>+055 11 999636455
+          <Phone style={{marginRight: "10px"}}/>Para demais regiões: 0800-718-2222
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{marginRight: "10px"}}/>contact@carrefour.com
+          <MailOutline style={{marginRight: "10px"}}/> atendimento@carrefour.com.br
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png"/>
       </Right>

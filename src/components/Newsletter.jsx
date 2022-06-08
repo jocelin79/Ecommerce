@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {mobile} from "../reponsive"
 
 const Container = styled.div`
-  height: 60vh;
+  height: 30vh;
   background-color: #fcf5f5;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@ const Container = styled.div`
 `
 
 const Title = styled.h1`
-  font-size: 70px;
+  font-size: 50px;
   margin-bottom: 20px;
 `
 
@@ -43,7 +43,7 @@ const Input = styled.input`
 const Button = styled.button`
   flex: 1;
   border: none;
-  background-color: teal;
+  background-color: #1e5bc6;
   color: white;
   cursor: pointer;
 `
@@ -51,10 +51,10 @@ const Button = styled.button`
 const Newsletter = () => {
   return (
     <Container>
-      <Title>Newsletter</Title>
-      <Desc>Get timely updates from your favorite products.</Desc>
+      <Title>Ofertas Exclusivas</Title>
+      <Desc>Receba os melhores decontos e novidades em seu e-mail !</Desc>
       <InputContainer>
-        <Input placeholder="Your email"/>
+        <Input placeholder="Seu e-mail"/>
         <Button>
           <Send/>
         </Button>

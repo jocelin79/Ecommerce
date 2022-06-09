@@ -4,23 +4,26 @@ import {mobile} from "../reponsive"
 
 const Container = styled.div`
   height: 30vh;
-  background-color: #fcf5f5;
+  background-color: #fcd7d7;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  ${mobile ({height: "25vh"})}
 `
 
 const Title = styled.h1`
   font-size: 50px;
   margin-bottom: 20px;
+  ${mobile ({fontSize: "35px", marginBottom: "10px"})}
 `
 
 const Desc = styled.div`
   font-size: 25px;
   font-weight: 300;
   margin-bottom: 20px;
-  ${mobile ({textAlign: 'center'})}
+  ${mobile ({textAlign: 'center', fontSize: "16px", width: "250px", marginBottom: "15px"})}
+  
 `
 
 const InputContainer = styled.div`
@@ -30,7 +33,7 @@ const InputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   border: 1px solid lightgray;
-  ${mobile ({width: '80%'})}
+  ${mobile ({width: '60%'})}
 `
 
 const Input = styled.input`

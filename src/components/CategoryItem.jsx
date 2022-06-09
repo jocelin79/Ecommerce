@@ -12,7 +12,7 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  ${mobile ({height: "25vh"})}
+  ${mobile ({height: "45vh"})}
 `
 
 const Info = styled.div`
@@ -27,12 +27,13 @@ const Info = styled.div`
   justify-content: center;
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
   color: white;
   background-color: #E81e26;
   margin-bottom: 20px;
   text-align: center;
   padding: 5px;
+  ${mobile ({fontSize: "20px", border: "solid 2px black"})}
 `
 
 const Button = styled.button`
@@ -42,6 +43,7 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   font-weight: 600;
+  ${mobile ({fontSize: "12px", fontWeight: "400", padding: "5px", border: "solid 2px black"})}
 `
 
 const CategoryItem = ({item}) => {

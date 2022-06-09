@@ -36,6 +36,6 @@ export const categories = [
   {
     id: 3,
     img: "https://i.ibb.co/1vsd36d/frutas.jpg",
-    title: "FRUTAS",
+    title: "FRUTAS DA ESTAÇÃO",
   },
 ];

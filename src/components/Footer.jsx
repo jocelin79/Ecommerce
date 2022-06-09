@@ -4,7 +4,7 @@ import {mobile} from "../reponsive"
 
 const Container = styled.div`
   display: flex;
-  ${mobile ({flexDirection: "column"})}
+  ${mobile ({height: "600px" ,flexDirection: "column"})}
 `
 
 const Left = styled.div`
@@ -12,12 +12,16 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  ${mobile ({flex:"0", height: "200px", padding: "10px 20px"})}
 `
 
-const Logo = styled.h1``
+const Logo = styled.h1`
+${mobile ({fontSize: "24px"})}
+`
 
 const Desc = styled.p`
   margin: 20px 0px;
+  ${mobile ({fontSize: "14px", margin: "10px 0"})}
 `
 
 const SocialContainer = styled.div`
@@ -34,6 +38,7 @@ const SocialIcon = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 20px;
+  ${mobile ({width: "30px", height: "30px"})}
 `
 
 const Center = styled.div`
@@ -44,6 +49,7 @@ const Center = styled.div`
 
 const Title = styled.h3`
   margin-bottom: 30px;
+  ${mobile ({fontSize: "24px", marginBottom: "20px"})}
 `
 
 const List = styled.ul`
@@ -62,12 +68,14 @@ const ListItem = styled.li`
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile ({flex:"0", padding: "0px 20px", marginTop: "20px"})}
 `
 
 const ContactItem = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+   ${mobile ({marginBottom: "20px"})}
 `
 
 const Payment = styled.img``
@@ -105,7 +113,7 @@ const Footer = () => {
         </List>
       </Center>
       <Right>
-        <Title>Contatio</Title>
+        <Title>Contato</Title>
         <ContactItem>
           <Phone style={{marginRight: "10px"}}/>Para regiões metropolitanas: 3004-2222
         </ContactItem>

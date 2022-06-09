@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { mobile } from '../reponsive'
 
 const Container = styled.div`
   height: 80px;
@@ -9,16 +10,11 @@ const Container = styled.div`
   justify-content: center;
   margin: 0px 60px 10px 60px;
   background-color: #E81e26;
-`
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${mobile ({margin: "10px 20px 10px 20px", paddingRight: "10px"})}
 `
 
 const Left = styled.div`
-  flex: 1;
+  width: 300px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -30,14 +26,16 @@ const Text = styled.span`
   color: white;
   text-align: right;
   margin: 20px;
+  ${mobile ({fontSize: "18px", margin: "15px"})}
 `
 
 const Right = styled.div`
-  flex: 1;
+  width: 300px;
   height: 40px;
   display: flex;
   justify-content: space-between;
   border: 1px solid lightgray;
+  ${mobile ({width: "200px", height: "30px"})}
 `
 
 const Input = styled.input`
@@ -45,6 +43,7 @@ const Input = styled.input`
   outline: none;
   flex: 8;
   padding-left: 20px;
+  ${mobile ({fontSize: "10px", width: "90px", paddingLeft: "5px"})}
 `
 
 const Button = styled.button`
@@ -53,27 +52,26 @@ const Button = styled.button`
   background-color: #1e5bc6;
   color: white;
   cursor: pointer;
+  ${mobile ({fontSize: "10px", height: "30px"})}
 `
 
 const CepSearch = () => {
   const [cep, setCep] = useState("")
   return(
     <Container>
-      <Wrapper>
-        <Left>
-          <Text>
-            Descubra o Carrefour mais perto de você
-          </Text>
-        </Left>
-        <Right>
-          <Input placeholder="Digite aqui seu CEP" onChange={(e) => setCep(e.target.value)}/>
-          <Link to={`/products/${cep}`}>
-            <Button>
-              VERIFICAR
-            </Button>
-          </Link>
-        </Right>
-      </Wrapper>
+      <Left>
+        <Text>
+          Descubra o Carrefour mais perto de você
+        </Text>
+      </Left>
+      <Right>
+        <Input placeholder="Digite aqui seu CEP" onChange={(e) => setCep(e.target.value)}/>
+        <Link to={`/products/${cep}`}>
+          <Button>
+            VERIFICAR
+          </Button>
+        </Link>
+      </Right>
     </Container>
   )
 }

@@ -25,6 +25,7 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  ${mobile ({display: "none"})}
 `
 
 const Language = styled.span`
@@ -38,7 +39,7 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 25px;
-  ${mobile ({marginLeft: "5px"})}
+  ${mobile ({display: "none"})}
 `
 
 const Input = styled.input`
@@ -57,24 +58,28 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
-  ${mobile ({fontSize: "24px", marginLeft: "5px"})}
+  ${mobile ({fontSize: "24px"})}
 `
 
-const LogoImg = styled.img``
+const LogoImg = styled.img`
+  ${mobile ({
+    transform: "scale(0.75)",
+    })}
+`
 
 const Right = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  ${mobile ({flex: "2",justifyContent: "center"})}
+  ${mobile ({flex: "2",justifyContent: "space-around", marginLeft: "20px"})}
 `
 
 const MenuItem = styled.a`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-  ${mobile ({fontSize: "12px", marginLeft: "10px"})}
+  ${mobile ({fontSize: "12px", marginLeft: "0px"})}
 `
 
 const Navbar = () => {

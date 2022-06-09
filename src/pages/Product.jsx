@@ -32,7 +32,7 @@ const Image = styled.img`
   width: 100%;
   height: 70vh;
   object-fit: cover;
-  ${mobile ({heightn: "40vh"})}
+  ${mobile ({height: "40vh"})}
 `
 
 const InfoContainer = styled.div`
@@ -44,11 +44,13 @@ const InfoContainer = styled.div`
 const Title = styled.h1`
   font-weight: 200;
   margin-bottom: 20px;
+  ${mobile ({fontSize: "25px", fontWeight: 400, marginBottom: "10px"})}
 `
 
 const Price = styled.span`
   font-weight: 100;
   font-size: 40px;
+  ${mobile ({fontSize: "25px", fontWeight: 300})}
 `
 
 const AddContainer = styled.div`
@@ -57,7 +59,7 @@ const AddContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
-  ${mobile ({width: "100%"})}
+  ${mobile ({width: "100%", marginTop: "10px"})}
 `
 
 const AmountContainer = styled.div`

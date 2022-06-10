@@ -74,14 +74,14 @@ const Login = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>SIGN IN</Title>
+        <Title>LOGIN</Title>
         <Form>
           <Input placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
           <Input placeholder="password"
           type="password" onChange={(e) => setPassword(e.target.value)}/>
           <Button onClick={handleClick} disabled={isFetching} >LOGIN</Button>
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CRAETE A NEW ACCOUNT</Link>
+          <Link>NÃO LEMBRA DA SUA SENHA?</Link>
+          <Link>CRIE UMA NOVA CONTA</Link>
         </Form>
       </Wrapper>
     </Container>

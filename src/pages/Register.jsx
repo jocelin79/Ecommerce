@@ -90,7 +90,7 @@ const Register = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>CREATE AN ACCOUNT</Title>
+        <Title>CRIE UMA CONTA</Title>
         <Form>
           <Input placeholder="name"/>
           <Input placeholder="last name"/>
@@ -98,8 +98,8 @@ const Register = () => {
           <Input placeholder="email" onChange={(e) => setEmailRegister(e.target.value)}/>
           <Input placeholder="password" onChange={(e) => setPasswordRegister(e.target.value)}/>
           <Input placeholder="confirm password"/>
-          <Agreement>By creating an account, I consent to the processing of my personal data in accordance with the <b>PRIVACY POLICY</b></Agreement>
-          <Button onClick={handleClick} >CREAT</Button>
+          <Agreement>Ao criar uma conta, eu concordo com o processamento dos meus dados pessoais de acordo com a <b>POLÍTICA DE PRIVACIDADE</b></Agreement>
+          <Button onClick={handleClick} >CRIAR</Button>
           {error && <Error>Algo está errado...</Error>}
           {success && <Success>Conta Registrada</Success>}
         </Form>

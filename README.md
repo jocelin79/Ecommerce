@@ -2,7 +2,7 @@
 
 ## 💻 Projeto
 
-Esta aplicação é fruto do evento Carrefour Web Developer Tech Day, promovido pelo Carrefour e pela Digital Innovation One. Neste evento, foi requisitado o consumo de uma Api de produtos, disponibilizada pelo Carrefour. Dito isto, a Ecommer-TechDay é uma aplicação web que se comunica, via requisições https, com a Ecommer-api-TechDay, que é integrada à api do Carreofuor. Através do consumo desta api, a este web site permite que o usuário realize operações de ecommerce básicas como: pesquisar as unidades da venda do Carreofuor, visualizar os produtos de cada unidade de venda e montar seu carrinho de compras. O projeto Ecommerce-TechDay foi desenvolvido na linguagem JavaScript, utiliza o framework React.js e se base na arquitetura de pastas: public, src, components, pages e redux.
+Esta aplicação é fruto do evento Carrefour Web Developer Tech Day, promovido pelo Carrefour e pela Digital Innovation One. Neste evento, foi requisitado o consumo de uma Api de produtos, disponibilizada pelo Carrefour. Dito isto, a Ecommerce-TechDay é uma aplicação web que se comunica, via requisições https, com a Ecommerce-api-TechDay, que é integrada à api do Carreofuor. Através do consumo desta api, este web site permite que o usuário realize operações de ecommerce básicas como: pesquisar as unidades da venda do Carreofuor, visualizar os produtos de cada unidade de venda e montar seu carrinho de compras. Além disso, o projeto Ecommerce-TechDay é responsivo tanto para mobile quanto para desktop. Por fim, este projeto foi desenvolvido na linguagem JavaScript, utiliza o framework React.js e se basea na arquitetura de pastas: public, src, components, pages e redux.
 
 ## ⚡ Funcionalidades
 

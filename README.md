@@ -7,7 +7,17 @@ Esta aplicação é fruto do evento Carrefour Web Developer Tech Day, promovido 
 ## ⚡ Funcionalidades
 
 Principais funcionalidades da aplicação:
-- 
+- Pesquisa de unidades Carrefour mais próximas, apartir da inserção de um CEP;
+- Listagem dos produtos da unidade de venda Carrefour escolhida;
+- Adicionar produtos a um carrinho de compras;
+- Retirar produtos do carrinho de compras;
+- Visualizar a composição do seu carrinho de compras;
+- Registro do usuário no site;
+- Login do usuário;
+- Logout do usuário;
+- Visualização das ofertas e itens em destaque;
+- Visualização dos canais de contato do Carrefour;
+- Registro em newsletter com ofertas exclusivas. 
 
 
 ## 🚀 Tecnologias
